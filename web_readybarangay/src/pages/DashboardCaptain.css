@@ -1,0 +1,72 @@
+/* DashboardCaptain.css */
+
+.sidebar.captain {
+    background: #050505;
+    border-right: 1px solid #1a1a1a;
+}
+
+.logo-icon.captain {
+    background: #d4af37;
+    /* Gold */
+    color: #000;
+}
+
+.avatar.captain {
+    background: #d4af37;
+    color: #000;
+}
+
+.rb-stat-card.gold::before {
+    background: #d4af37;
+}
+
+.rb-stat-icon.gold {
+    background: #fff8e1;
+}
+
+.captain-badge {
+    background: #000;
+    color: #d4af37;
+    border: 1px solid #d4af37;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.approval-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--gray-100);
+    transition: background 0.15s;
+}
+
+.approval-item:hover {
+    background: var(--gray-50);
+}
+
+.approval-item:last-child {
+    border-bottom: none;
+}
+
+.app-title {
+    font-family: var(--font-ui);
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+}
+
+.app-meta {
+    font-size: 11.5px;
+    color: var(--gray-500);
+}
+
+.app-actions {
+    display: flex;
+    gap: 8px;
+}

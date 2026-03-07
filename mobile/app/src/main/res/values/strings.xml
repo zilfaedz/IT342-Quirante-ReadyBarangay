@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">mobile</string>
+    <string name="response_overview">Response Overview</string>
+    <string name="dashboard_date">Thursday, February 19, 2026</string>
+    <string name="menu">Menu</string>
+    <string name="active_incidents_pill">● 3 Active Incidents</string>
+    <string name="report_incident">+ Report Incident</string>
+    <string name="fire_emoji">🔥</string>
+    <string name="wildfire_advisory">▲ ACTIVE — Wildfire Advisory: Cedar County</string>
+    <string name="evacuation_orders">Evacuation orders in effect for Zones 3, 4 &amp; 5. 847 residents affected. Last updated 12 min ago.</string>
+    <string name="view_full_alert">View Full Alert</string>
+    <string name="active_incidents_label">ACTIVE INCIDENTS</string>
+    <string name="alert_emoji">🚨</string>
+    <string name="active_incidents_count">3</string>
+    <string name="incidents_change">↑ 2 since yesterday</string>
+    <string name="displaced_residents_label">DISPLACED RESIDENTS</string>
+    <string name="displaced_residents_count">847</string>
+    <string name="displaced_change">↑ 212 in last 2 hrs</string>
+    <string name="active_volunteers_label">ACTIVE VOLUNTEERS</string>
+    <string name="volunteers_count">134</string>
+    <string name="volunteers_change">↑ 41 mobilized today</string>
+    <string name="shelter_capacity_label">SHELTER CAPACITY</string>
+    <string name="shelter_capacity_value">68%</string>
+    <string name="shelter_sites">across 5 open sites</string>
+    <string name="active_incidents_title">Active Incidents</string>
+    <string name="full_incident_log">FULL INCIDENT LOG →</string>
+    <string name="live_updates_title">Live Updates</string>
+    <string name="clear">CLEAR</string>
+</resources>

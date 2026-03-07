@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group_main">
+        <item android:id="@+id/nav_dashboard" android:title="Dashboard" />
+        <item android:id="@+id/nav_emergency_reports" android:title="Emergency Reports" />
+        <item android:id="@+id/nav_evacuation_centers" android:title="Evacuation Centers" />
+        <item android:id="@+id/nav_announcements" android:title="Announcements" />
+    </group>
+
+    <group android:id="@+id/group_community">
+        <item android:id="@+id/nav_directory" android:title="Community Directory" />
+        <item android:id="@+id/nav_hotlines" android:title="Hotlines" />
+    </group>
+
+    <group android:id="@+id/group_account">
+        <item android:id="@+id/nav_settings" android:title="Settings" />
+        <item android:id="@+id/nav_logout" android:title="Logout" />
+    </group>
+</menu>

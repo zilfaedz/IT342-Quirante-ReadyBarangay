@@ -6,7 +6,7 @@ import {
     Flame, Mountain, LifeBuoy, Zap, FileText, Camera, CheckCircle2,
     Building2, Megaphone, ClipboardList, Bell, Phone, Clock,
     Edit2, Trash2, Lock, Navigation, Search, X, ChevronRight,
-    ShieldCheck, Radio, Users, Map, Heart, Shield
+    ShieldCheck, Radio, Users, Map, Heart, Shield, ArrowUpDown
 } from "lucide-react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -703,12 +703,24 @@ const DashboardHome = ({ onReport, stats, setActive, user }) => (
 const MyReports = ({ reports, onReport }) => {
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState("All");
+    const [sortOrder, setSortOrder] = useState("oldest");
 
     const filtered = reports.filter(r => {
         const matchSearch = r.incidentType?.toLowerCase().includes(search.toLowerCase()) ||
             r.location?.toLowerCase().includes(search.toLowerCase());
         const matchFilter = filter === "All" || r.urgency === filter;
         return matchSearch && matchFilter;
+    });
+
+    const sortedReports = [...filtered].sort((a, b) => {
+        const dateA = new Date(a.createdAt).getTime();
+        const dateB = new Date(b.createdAt).getTime();
+
+        if (sortOrder === "latest") {
+            return dateB - dateA;
+        }
+
+        return dateA - dateB;
     });
 
     return (
@@ -745,6 +757,15 @@ const MyReports = ({ reports, onReport }) => {
                         <option>Medium</option>
                         <option>Low</option>
                     </select>
+                    <button
+                        type="button"
+                        className="rb-btn rb-btn-secondary rb-btn-sm rb-btn-icon"
+                        onClick={() => setSortOrder(prev => prev === "oldest" ? "latest" : "oldest")}
+                        title={sortOrder === "oldest" ? "Sort: Oldest to Latest" : "Sort: Latest to Oldest"}
+                        aria-label={sortOrder === "oldest" ? "Sort oldest to latest" : "Sort latest to oldest"}
+                    >
+                        <ArrowUpDown size={15} />
+                    </button>
                 </div>
             )}
 
@@ -760,7 +781,7 @@ const MyReports = ({ reports, onReport }) => {
                             <Siren size={15} style={{ marginRight: 8 }} /> Submit First Report
                         </button>
                     </div>
-                ) : filtered.length === 0 ? (
+                ) : sortedReports.length === 0 ? (
                     <div className="rb-empty" style={{ padding: 32 }}>
                         <div className="rb-empty-text">No reports match your search</div>
                     </div>
@@ -779,7 +800,7 @@ const MyReports = ({ reports, onReport }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filtered.map(r => (
+                                {sortedReports.map(r => (
                                     <tr key={r.id}>
                                         <td><code style={{ fontSize: 11 }}>#{r.id}</code></td>
                                         <td style={{ fontWeight: 600 }}>{r.incidentType}</td>
@@ -1004,42 +1025,7 @@ const EvacuationCenters = () => {
 };
 
 // ---- ANNOUNCEMENTS ----
-const ANNOUNCEMENTS = [
-    {
-        title: "TYPHOON WARNING: Prepare Evacuation Bags",
-        body: "Barangay Officials advise all residents to prepare emergency kits with 3-day supplies. Evacuation may commence by 6PM if Typhoon Signal #2 is raised.",
-        time: "1 hr ago",
-        timestamp: new Date(Date.now() - 3600000),
-        emergency: true,
-        unread: true,
-        author: "Brgy Captain"
-    },
-    {
-        title: "Community Flood Preparedness Seminar",
-        body: "Join us Saturday, Feb 24 at the Barangay Hall for a free seminar on flood preparedness and evacuation procedures.",
-        time: "3 hrs ago",
-        timestamp: new Date(Date.now() - 10800000),
-        emergency: false,
-        unread: true,
-        author: "DRRMC"
-    },
-    {
-        title: "Barangay Clean-Up Drive Results",
-        body: "Thank you to all 200+ volunteers who participated in last Saturday's clean-up drive! Together we collected over 500kg of waste.",
-        time: "Yesterday",
-        emergency: false,
-        unread: false,
-        author: "Brgy Secretary"
-    },
-    {
-        title: "Updated Evacuation Routes Posted",
-        body: "New evacuation route maps have been posted at the barangay bulletin board and online portal. Please familiarize yourself with the nearest route.",
-        time: "2 days ago",
-        emergency: false,
-        unread: false,
-        author: "DRRMC"
-    },
-];
+const ANNOUNCEMENTS = [];
 
 const Announcements = () => {
     const [filter, setFilter] = useState("All");
@@ -1065,7 +1051,17 @@ const Announcements = () => {
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                {filtered.map((a, i) => (
+                {filtered.length === 0 ? (
+                    <div className="rb-card">
+                        <div className="rb-empty" style={{ padding: "40px 20px" }}>
+                            <div className="rb-empty-icon"><Bell size={40} /></div>
+                            <div className="rb-empty-text">No announcements available</div>
+                            <div style={{ fontSize: 13, color: "var(--gray-400)" }}>
+                                Official announcements will appear here once they are posted.
+                            </div>
+                        </div>
+                    </div>
+                ) : filtered.map((a, i) => (
                     <div
                         key={i}
                         className={`rb-announcement${a.emergency ? " emergency-alert" : ""}${a.unread ? " unread" : ""}`}

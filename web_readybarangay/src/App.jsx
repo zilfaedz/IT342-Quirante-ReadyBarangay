@@ -1,18 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
-import ScrollToTop from './components/ScrollToTop';
-import AuthLayout from './components/AuthLayout';
-import Layout from './components/Layout';
-import LandingPage from './pages/LandingPage';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import RegisterBarangay from './pages/RegisterBarangay';
-import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
-import AdminDashboard from './pages/AdminDashboard';
-import TransferVerificationPage from './pages/TransferVerificationPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './shared/auth/AuthContext';
+import ProtectedRoute from './shared/auth/ProtectedRoute';
+import ScrollToTop from './shared/layout/ScrollToTop';
+import Layout from './shared/layout/Layout';
+import LandingPage from './features/home/LandingPage';
+import Login from './features/auth/Login';
+import Register from './features/auth/Register';
+import RegisterBarangay from './features/auth/RegisterBarangay';
+import Dashboard from './features/dashboard/Dashboard';
+import Profile from './features/profile/Profile';
+import AdminDashboard from './features/admin/AdminDashboard';
+import TransferVerificationPage from './features/transfers/TransferVerificationPage';
 import './App.css';
 
 function App() {
